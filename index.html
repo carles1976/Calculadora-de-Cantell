@@ -9,10 +9,21 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f0f2f5;
             display: flex;
+            flex-direction: column; /* AFEGIT AIXÒ */
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+        }
+        
+        /* AFEGIT NOU BLOC PER AL LOGO */
+        .logo-container {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .logo-container img {
+            height: 80px; /* Pots fer-lo més gran o petit canviant aquest número */
+            width: auto;
         }
         .container {
             background-color: white;
@@ -79,6 +90,14 @@
 </head>
 <body>
 
+<!-- AFEGIR AQUESTES TRES LÍNIES AQUÍ -->
+<div class="logo-container">
+    <img src="CXS.png" alt="Logo CXS">
+</div>
+
+<div class="container">
+    <h2>Calculadora de Cantell</h2>
+    
 <div class="container">
     <h2>Calculadora de Cantell</h2>
     
