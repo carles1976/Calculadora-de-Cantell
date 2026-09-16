@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de metres de cantell</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            max-width: 450px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccd0d5;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        input[type="number"]:focus {
+            border-color: #0056b3;
+            outline: none;
+        }
+        .result-group {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #e8f4fd;
+            border-left: 6px solid #0056b3;
+            font-size: 1.4em;
+            text-align: center;
+            border-radius: 4px;
+            color: #003d82;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #004494;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Calculadora de Cantell</h2>
+    
+    <div class="form-group">
+        <label for="b1">Ø exterior del rull de cantell (cm)</label>
+        <input type="number" id="b1" step="0.1" placeholder="Ex: 20.6">
+    </div>
+    
+    <div class="form-group">
+        <label for="b2">Ø interior del rull de cantell (cm)</label>
+        <input type="number" id="b2" step="0.1" placeholder="Ex: 10.4">
+    </div>
+    
+    <div class="form-group">
+        <label for="b3">Gruix del cantell (mm)</label>
+        <input type="number" id="b3" step="0.1" placeholder="Ex: 0.8">
+    </div>
+    
+    <button onclick="calcular()">Calcular Metres</button>
+    
+    <div class="result-group" id="resultat-container" style="display: none;">
+        <strong>Metres de cantell:</strong> <span id="resultat">0</span>
+    </div>
+</div>
+
+<script>
+    function calcular() {
+        // Obtenir els valors
+        const b1 = parseFloat(document.getElementById('b1').value);
+        const b2 = parseFloat(document.getElementById('b2').value);
+        const b3 = parseFloat(document.getElementById('b3').value);
+        
+        if (isNaN(b1) || isNaN(b2) || isNaN(b3) || b3 === 0) {
+            alert("Si us plau, introdueix valors numèrics vàlids en totes les caselles.");
+            return;
+        }
+
+        // Fórmula de la imatge: =((((B1-B2)/2)+B2)/100*3,1416)*(((B1-B2)/2)/(B3/10))
+        const radi_mitja = (((b1 - b2) / 2) + b2);
+        const longitud_mitja = (radi_mitja / 100) * 3.1416; // en metres
+        const nombre_voltes = ((b1 - b2) / 2) / (b3 / 10);
+        
+        const resultat = longitud_mitja * nombre_voltes;
+
+        // Mostrar el resultat arrodonit (com a la imatge, 31)
+        document.getElementById('resultat').innerText = Math.round(resultat);
+        document.getElementById('resultat-container').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
