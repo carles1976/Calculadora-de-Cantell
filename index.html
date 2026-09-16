@@ -17,11 +17,14 @@
         }
         .logo-container {
             margin-bottom: 20px;
-            text-align: center;
+            width: 100%;
+            max-width: 450px; /* Obliga a tenir la mateixa amplada que la calculadora */
+            display: flex;
+            justify-content: center;
         }
         .logo-container img {
-            height: 300px; 
-            width: auto;
+            width: 100%; /* Fa que la imatge s'estiri als costats */
+            height: auto; /* Manté la proporció perquè no es deformi */
         }
         .container {
             background-color: white;
